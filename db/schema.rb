@@ -13,17 +13,14 @@
 
 ActiveRecord::Schema.define(version: 20161201202227) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "advertisements", force: :cascade do |t|
     t.datetime "data_fim"
-    t.boolean  "ativo"
+    t.boolean  "ativo",          default: false
     t.text     "descricao"
     t.integer  "user_id"
     t.integer  "books_group_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "titulo"
   end
 
@@ -62,7 +59,7 @@ ActiveRecord::Schema.define(version: 20161201202227) do
     t.datetime "updated_at",             null: false
   end
 
-  add_index "books", ["isbn"], name: "index_books_on_isbn", unique: true, using: :btree
+  add_index "books", ["isbn"], name: "index_books_on_isbn", unique: true
 
   create_table "books_group_has_books", force: :cascade do |t|
     t.integer  "book_id"
@@ -86,7 +83,7 @@ ActiveRecord::Schema.define(version: 20161201202227) do
     t.datetime "updated_at",       null: false
   end
 
-  add_index "categories", ["categoria"], name: "index_categories_on_categoria", unique: true, using: :btree
+  add_index "categories", ["categoria"], name: "index_categories_on_categoria", unique: true
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                     null: false
@@ -95,23 +92,14 @@ ActiveRecord::Schema.define(version: 20161201202227) do
     t.string   "encrypted_password", limit: 128, null: false
     t.string   "confirmation_token", limit: 128
     t.string   "remember_token",     limit: 128, null: false
-    t.string   "nome",                           null: false
-    t.string   "cpf",                limit: 11,  null: false
-    t.date     "data_nascimento",                null: false
-    t.string   "telefone",           limit: 11,  null: false
+    t.string   "nome"
+    t.string   "cpf"
+    t.date     "data_nascimento"
+    t.string   "telefone"
   end
 
-  add_index "users", ["cpf"], name: "index_users_on_cpf", unique: true, using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", using: :btree
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+  add_index "users", ["cpf"], name: "index_users_on_cpf", unique: true
+  add_index "users", ["email"], name: "index_users_on_email"
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
-  add_foreign_key "advertisements", "books_groups"
-  add_foreign_key "advertisements", "users"
-  add_foreign_key "book_authors", "authors"
-  add_foreign_key "book_authors", "books"
-  add_foreign_key "book_categories", "books"
-  add_foreign_key "book_categories", "categories"
-  add_foreign_key "books_group_has_books", "books"
-  add_foreign_key "books_group_has_books", "books_groups"
-  add_foreign_key "categories", "categories", column: "categoria_pai_id"
 end

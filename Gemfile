@@ -9,11 +9,7 @@ gem 'rails', '4.2.6'
 gem 'haml'
 
 # Use postgresql as the database for Active Record
-gem 'pg'
-
-gem 'mongo'
-
-gem 'neo4j-core'
+gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

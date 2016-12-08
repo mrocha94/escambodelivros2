@@ -6,17 +6,7 @@ class AdvertisementsController < ApplicationController
   # GET /advertisements
   # GET /advertisements.json
   def index
-
-    search = params[:search]
-    if (search && search.size > 0)
-      @advertisements = Advertisement.text_search(search)
-    else
-      @advertisements = Advertisement.where(ativo: true)
-    end
-
-    if signed_in?
-      @recommendations = Advertisement.recommendation_search(current_user.id)
-    end
+    @advertisements = Advertisement.where(ativo: true)
   end
 
   def user_advertisements

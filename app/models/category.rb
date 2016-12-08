@@ -5,9 +5,4 @@ class Category < ActiveRecord::Base
 
   validates :categoria, presence: true
 
-  def to_json
-    json = {}
-    json[:categoria] = categoria
-    json
-  end
 end

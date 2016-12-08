@@ -1,8 +1,6 @@
 class User < ActiveRecord::Base
   include Clearance::User
 
-  after_save :save_to_neo
-
   has_many :advertisements
 
   validates :nome, presence: true
@@ -24,12 +22,5 @@ class User < ActiveRecord::Base
         break
       end
     end
-  end
-
-  private
-
-  def save_to_neo
-    session = DbConnection.neo4j
-    session.query.merge(u: { User: { user_id: id } }).set(u: { name: nome })
   end
 end
