@@ -1,0 +1,26 @@
+<div id="gallery" class="gallery all_pad wthree">
+  <div class="container">
+<h3 class="title"> Add book </h3>
+
+<%= form_tag url_for(:controller => 'books_group_has_book', :action => 'create'), action: 'post' do -%>
+  <div class="text-field">
+    <%= label :books_group_has_book, :book %> : <%= collection_select :books_group_has_book, :book_id, @books, :id, :titulo, :class => "autocomplement" %>&nbsp;&nbsp;
+    <%= label :books_group_has_book, :estado %> : <%= text_field :books_group_has_book, :estado %>&nbsp;&nbsp;
+    <%= label :books_group_has_book, :ano_compra %> : <%= text_field :books_group_has_book, :ano_compra %>&nbsp;&nbsp;
+    <%= submit_tag "Save", :class => "btn btn-primary" %>
+  </div>
+<br/>
+  <div class="text-field">
+
+  </div>
+
+  <div class="text-field">
+
+  </div>
+
+
+
+<% end %>
+
+</div>
+</div>

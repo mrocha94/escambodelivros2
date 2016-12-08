@@ -1,0 +1,31 @@
+<div id="gallery" class="gallery all_pad wthree">
+  <div class="container">
+
+<h3 class="title">Editing Advertisement</h3>
+
+<%= render 'form' %>
+
+<h3 class="title">Books of this ad <%= link_to '+', new_advertisement_books_group_has_book_path(@advertisement) %></h3>
+    <%= link_to 'Show', @advertisement %> |
+    <%= link_to 'Back', advertisements_path %>
+    <br><br>
+<table class="table">
+    <tr>
+      <th>Title</th>
+      <th>New / Used</th>
+      <th>Publication Year</th>
+    </tr>
+  <% @advertisement.books_group_has_books.each do |book| -%>
+    <tr>
+      <td><%= book.book.titulo %></td>
+      <td><%= book.estado %></td>
+      <td><%= book.ano_compra %></td>
+      <td><%= link_to 'x', books_group_has_book_path(book, return_url: edit_advertisement_path(@advertisement)), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br><br>
+
+  </div>
+</div>

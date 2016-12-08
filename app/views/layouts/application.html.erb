@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Escambo de Livros</title>
+    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+  <div class="container-fluid">
+
+
+
+
+
+  <div id="home" class="banner w3l">
+    <div class="container">
+      <nav class="navbar navbar-default  wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.3s">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header logo">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+          <nav class="cl-effect-1">
+            <ul class="nav navbar-nav ">
+              <li> <%= link_to "Home", root_path, class: 'active' %></li>
+
+              <% if signed_in? %>
+                  <li>
+                    <%= link_to 'My Advertisements', my_advertisements_path %>
+                  </li>
+                  <li>
+                    <%= link_to t(".sign_out"), sign_out_path, method: :delete %>
+                  </li>
+              <% else %>
+                  <li>
+                    <%= link_to t(".sign_in"), sign_in_path %>
+                  </li>
+              <% end %>
+
+            </ul>
+          </nav>
+        </div><!-- /navbar-collapse -->
+      </nav>
+      <div class="banner-info wow bounceInDown" data-wow-duration="1s" data-wow-delay="0s">
+        <script src="js/responsiveslides.min.js"></script>
+        <script>
+            // You can also use "$(window).load(function() {"
+            $(function () {
+                // Slideshow 4
+                $("#slider3").responsiveSlides({
+                    auto: true,
+                    pager: false,
+                    nav: true,
+                    speed: 500,
+                    namespace: "callbacks",
+                    before: function () {
+                        $('.events').append("<li>before event fired.</li>");
+                    },
+                    after: function () {
+                        $('.events').append("<li>after event fired.</li>");
+                    }
+                });
+            });
+        </script>
+        <div  class="callbacks_container">
+          <ul class="rslides" id="slider3">
+            <li>
+              <div class="banner-text">
+                <h3>MAKE YOUR LIFE BEAUTIFUL</h3>
+                <p></p>
+              </div>
+            </li>
+            <li>
+              <div class="banner-text">
+                <h3>MAKE YOUR DREAMS COMES TRUE</h3>
+                <p></p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+
+      <div class="text-center">
+        <%= yield :search %>
+      </div>
+    </div>
+  </div>
+  <!-- //header -->
+
+  <% if flash[:notice] %>
+    <div class="message text-center" id="notice">
+      <%= flash[:notice] %>
+    </div>
+  <% elsif flash[:warning] %>
+    <div class="has_error message text-center" id="warning">
+      <ul class="warning text-center">
+        <% flash[:warning].each do |msg| %>
+          <li>
+            <%= msg %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= yield %>
+
+
+</div>
+
+  <div class="copy-right">
+    <div class="container">
+      <p>&copy; 2016 Pedagogy . All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+    </div>
+  </div>
+
+  </body>
+</html>
