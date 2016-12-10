@@ -47,10 +47,23 @@ gem 'isbn_validation'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Fixtures made easy
+gem 'factory_girl_rails', '~> 4.5.0'
+
+gem 'factory_girl_rspec', '~> 2.1.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and
   #   get a debugger console
   gem 'byebug'
+  gem 'rspec-rails', '~> 3.5'
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 2.8.0'
+  gem 'cucumber-rails', require: false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
 end
 
 group :development do
