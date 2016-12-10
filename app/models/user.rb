@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
 
   validates :nome, presence: true
   validates :cpf, presence: true
-  validates :data_nascimento, presence: true
   validates :telefone, presence: true
   validate :cpf_valid?
 
